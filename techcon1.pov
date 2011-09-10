@@ -10,27 +10,14 @@
 // ------------------------------
 // THIS SCENE USES RADIOSITY
 // ------------------------------
-// Stats on a PIII 733 @ 640*480, default antialiasing
-// Parsing time with WriteFile=true : 1 min
-// Tracing time : > 1 hour
-// Peak memory : > 100 Mb
-// ------------------------------
-//
-// -w320 -h240
-// -w800 -h600 +a0.3
+#version 3.7;
 
-#declare WriteFile=true;  // turns on the generation of the stacks and write them to a file
-// ------------------------------
 // choose a number of cubes (has no effect unless WriteFile=True)
 // large n values give long parsing time
 #declare num=1;
-//#declare num=100; 
-//#declare num=10; 
-//#declare num=5;     
-// ------------------------------
 
-// ------------------------------
 #include "colors.inc"
+
 
 // ------------------------------
 // Set settings : radiosity only
@@ -39,26 +26,27 @@ global_settings{
     radiosity{
         pretrace_start 1
         pretrace_end 1
-        count 2000 // 50
+        count 2000
         recursion_limit 1 
         nearest_count 20 //5
         error_bound 0.005 // .05
     }
+    assumed_gamma 2.2
 }
 
 #default {finish { ambient 0 diffuse 1 }}
 
-#declare CamLoc=<0,2.5,-19>; 
-#declare CamEye=<0.2,0.3,-10>;
+#declare CamLoc=<-0.5,3.5,-18>; 
+#declare CamEye=<-1.5,0.3,-10>;
 #declare CamSky=y;
 #declare AspectRatio=4/3;
 #declare CamZoom=1;
 
 camera {
-        location CamLoc
-        direction z*CamZoom
-        right x*AspectRatio
-        look_at CamEye
+   location CamLoc
+   direction z*CamZoom
+   right x*AspectRatio
+   look_at CamEye
 }
 
 sky_sphere{  // white sky sphere with a blue far end
@@ -73,7 +61,6 @@ sky_sphere{  // white sky sphere with a blue far end
         translate -z
     }
 }                         
-
 
 plane{y,0 texture{pigment{White} finish{ambient 0 diffuse 1}}} 
 plane{y,0 rotate x*-20 texture{pigment{White} finish{ambient 0 diffuse 1}} translate z*10000} 
@@ -149,6 +136,7 @@ union{
     }
 }
 #end
+
 // ------------------------------
 // cube texture
 // ------------------------------
@@ -162,13 +150,10 @@ union{
     }                   
 #end                                                    
 
-
 // ------------------------------
 // scene
 // ------------------------------
-#if (WriteFile) 
-    #include "makestacks1.inc" // calls the stacking routine
-#end    
+#include "makestacks1.inc" // calls the stacking routine
 #include "stacks.inc"     // place the cubes
 
 
