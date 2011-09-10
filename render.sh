@@ -1,12 +1,13 @@
 #!/bin/bash
 
 export INFILENAME=$1
-export OUTFILENAME=${INFILENAME%.*}.png
+export OUTDIR=png
+export OUTFILENAME=${INFILENAME%.*}-test.png
 
-nice -n 19 povray +I$INFILENAME +O$OUTFILENAME +W1280 +H960 +Q11 +FN16 +AM2 +A0.01 +J1
-if [ -e $OUTFILENAME ]
+nice -n 19 povray +I$INFILENAME +O$OUTDIR/$OUTFILENAME +W1280 +H960 +Q11 +FN16 +AM2 +A0.01 +J1
+if [ -e $OUTDIR/$OUTFILENAME ]
 then
-    uuencode $OUTFILENAME $OUTFILENAME | mail -s "$OUTFILENAME" ncodignotto@liquidnet.com
+    uuencode $OUTDIR/$OUTFILENAME $OUTFILENAME | mail -s "$OUTFILENAME" ncodignotto@liquidnet.com
 fi    
 
 
