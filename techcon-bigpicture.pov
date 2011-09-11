@@ -27,7 +27,7 @@ global_settings{
     radiosity{
         pretrace_start 1
         pretrace_end 1
-        count 2000
+        count 1000
         recursion_limit 1 
         nearest_count 20 //5
         error_bound 0.005 // .05
@@ -37,8 +37,8 @@ global_settings{
 
 #default {finish { ambient 0 diffuse 1 }}
 
-#declare CamLoc=<-0.5,3.5,-18>; 
-#declare CamEye=<0,0.3,-10>;
+#declare CamLoc=<-2.5,14,-24>; 
+#declare CamEye=<0,3,-10>;
 #declare CamSky=y;
 #declare AspectRatio=4/3;
 #declare CamZoom=1;
@@ -136,6 +136,32 @@ union{
 }
 #end
 
+#macro unitbox_big(COL)
+union{
+    difference{
+        box{<-0.5,-0.5,-0.5>,<0.5,0.5,0.5>}
+        box{<-0.45,-0.45,-1>,<0.45,0.45,1>}
+        box{<-1,-0.45,-0.45>,<1,0.45,0.45>}
+        box{<-0.45,-1,-0.45>,<0.45,1,0.45>}
+        txtBox(COL)
+    }                
+    box{-0.45,0.45 texture{pigment{White*1.4}}}                                
+    #declare Font="cyrvetic"
+    #declare sFont=<0.25,0.25,0.01>;
+    #local T=text { ttf Font "The" 1, 0 scale sFont}
+    #local B=text { ttf Font "Big" 1, 0 scale sFont}
+    #local P=text { ttf Font "Picture" 1, 0 scale sFont}
+    union{
+        object{T centertext(T) translate -0.5*z rotate y*90 txtBox(COL)}
+        object{B centertext(B) translate -0.5*z  txtBox(COL)}                        
+        object{P centertext(P) translate -0.5*z rotate -90*y txtBox(COL)}   
+        object{T centertext(T) translate -0.5*z rotate 180*y txtBox(COL)}                   
+        object{B centertext(B) translate -0.5*z rotate 90*x txtBox(COL)}  
+        object{P centertext(P) translate -0.5*z rotate -90*x txtBox(COL)}  
+    }
+}
+#end
+
 // ------------------------------
 // cube texture
 // ------------------------------
@@ -149,7 +175,7 @@ union{
 // ------------------------------
 // scene
 // ------------------------------
-#include "makestacks1.inc" // calls the stacking routine
+#include "makestacks-bigpicture.inc" // calls the stacking routine
 #include "stacks.inc"     // place the cubes
 
 
