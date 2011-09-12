@@ -112,7 +112,7 @@
 #write (StackFile, "object{unitbox1(LN_Blue) rotate 90*x rotate ",R[3]," translate <3.0,1.5,-10>+0.35*",T[5],"}\n")
 #write (StackFile, "object{unitbox1(Med_Purple) rotate 90*x rotate ",R[1]," translate <4.3,1.5,-10>+0.35*",T[6],"}\n")
 
-#write (StackFile, "object{unitbox_big(SkyBlue) rotate 90*x rotate <0,-45,0> translate <0,0.5,0> scale 8}\n")
+#write (StackFile, "object{unitbox_big(SkyBlue) rotate 90*x rotate <0,-45,0> translate <0,0.5,-1> scale 5}\n")
 
 // ------------------------------
 // main placement loop
