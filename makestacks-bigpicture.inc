@@ -105,7 +105,7 @@
 #write (StackFile, "object{unitbox(LN_Orange) rotate 180*y rotate ",R[3]," translate <0.1,0.5,-10>+0.35*",T[3],"}\n")
 #write (StackFile, "object{unitbox(Med_Purple) rotate 90*y rotate ",R[4]," translate <1.9,0.5,-10>+0.35*",T[4],"}\n")
 #write (StackFile, "object{unitbox(Yellow) rotate -90*x rotate ",R[5]," translate <3.2,0.5,-10>+0.35*",T[5],"}\n")
-#write (StackFile, "object{unitbox(Red) rotate 90*x rotate ",R[6]," translate <4.3,0.5,-10>+0.35*",T[6],"}\n")
+#write (StackFile, "object{unitbox(Red) rotate 90*x rotate ",R[1]," translate <4.4,0.5,-10>+0.35*",T[6],"}\n")
 
 #write (StackFile, "object{unitbox1(Green) rotate 180*y rotate ",R[3]," translate <0.35,1.5,-10>+0.35*",T[3],"}\n")
 #write (StackFile, "object{unitbox1(LN_Orange) rotate -90*x rotate ",R[1]," translate <1.6,1.5,-10>+0.35*",T[4],"}\n")
